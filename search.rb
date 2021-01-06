@@ -18,14 +18,14 @@ class Search
   private
 
   def find_matches
-    local  = "#{ENV['HOME']}/Library/Containers/pro.writer.mac/Data/Documents/*.txt"
-    icloud = "#{ENV['HOME']}/Library/Mobile Documents/*~pro~writer/Documents/*.txt"
+    local  = "#{ENV['HOME']}/Library/Containers/pro.writer.mac/Data/Documents/*.*"
+    icloud = "#{ENV['HOME']}/Library/Mobile Documents/*~pro~writer/Documents/*.*"
 
     Dir.glob(local) + Dir.glob(icloud)
   end
 
   def document_json(file_path)
-    base_name = File.basename(file_path, '.txt')
+    base_name = File.basename(file_path, '.*')
 
     workflow.result
             .uid(base_name)
